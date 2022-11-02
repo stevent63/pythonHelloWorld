@@ -130,3 +130,119 @@ board = [['X' if num % 2 != 0 else 'O' for num in range(1,4)] for val in range(1
 print(board)
 
 #dictionaries
+coder = {
+  'name': 'Steven',
+  'owns_dog': False,
+  'hours_experience': 1000,
+  42: 'the answer'
+}
+#another way to create/cast a dict
+another_coder = dict(name = 'joe')
+
+#access single value
+print(coder['name'])
+
+#loop through keys
+for value in coder.keys():
+  # print(value)
+  value
+
+#loop through values
+for value in coder.values():
+  # print(value)
+  value
+
+#loop through key/value pairs
+for key,value in coder.items():
+  print(key, value)
+
+#check for key in dict
+'name' in coder #returns True
+'phone' in coder #returns False
+#ex
+if 'name' in coder:
+  print('the name of the coder is', coder['name'])
+
+#check for value in dict
+'Steven' in coder.values() #True
+
+#coder.clear() #clears dictionary
+coder2 = coder.copy() #creates new copy, unique object in memory
+
+#for fromkeys, python will iterate over the first param no matter the data type
+{}.fromkeys(['name', 'email'], 'unknown') #sets keys from first param with all values from second param
+
+coder['name'] #'Steven'
+coder.get('name') #'Steven'
+# coder['age'] #KeyError
+coder.get('age') #None
+
+coder.pop('owns_dog') #removes key/value pair from dictionary
+#coder.popitem() #removes random key/value pair from dictionary
+
+first = dict(a=1)
+second = dict(b=2)
+second.update(first) #{'a': 1, 'b':2 }
+
+#dictionary comprehension
+numbers = dict(first=1, second=2, third=3)
+squared_numbers = { key: value ** 2 for key,value in numbers.items()}
+
+#making a dictionary with comprehension
+new_dict = {num: num ** 2 for num in [1, 2, 3]}
+
+#tuples
+# -ordered collection or grouping of items
+# -immutable
+numbers = (1, 2, 3, 4)
+3 in numbers #True
+
+#tuples can be used as keys in a dictionary, for example gps coordinates for named place
+# (cannot use list as keys)
+locations = {
+  (35.6895, 39.6917): 'Tokyo',
+  (40.7128, 74.0060): 'New York',
+}
+locations[(35.6895, 39.6917)] #Tokyo
+
+for location in locations:
+  print(location, locations[location])
+
+t = (1, 2, 3, 3, 3)
+t.index(1) #0
+# t.index(5) #ValueError
+t.index(3) #2 - returns first matching index
+
+#sets
+# -like formal mathematical sets
+# -do not have duplicate values
+# -elements in sets aren't ordered
+# -cannot access items in a set by index
+# -useful if you need to keep track of a collection of elements
+# -...but don't care about ordering, keys or values and duplicates
+
+s1 = {1, 4, 5}
+s2 = set({1, 2, 3})
+
+s3 = {1, 2, 2} #{1, 2}
+s3.add(2) #{1, 2}
+s3.add(3) #{1, 2, 3}
+s3.remove(3) #{1, 2}
+# s3.remove(4) #ValueError
+s3.clear() #set()
+
+#s1[0] #TypeError
+4 in s1 #True
+8 in s1 #False
+
+#set math
+math_students = {'Steven', 'Frank'}
+bio_students = {'Joe', 'Frank'}
+math_students | bio_students #{'Steven', 'Joe', 'Frank'}
+math_students & bio_students #{'Frank'}
+
+#set comprehension
+{x**2 for x in range(10)}
+{0, 1, 64, 4, 36, 9, 16, 49, 81, 25} #set
+{x:x**2 for x in range(10)}
+{0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81} #dictionary
